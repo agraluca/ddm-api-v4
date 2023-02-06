@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_me_component_me_components",
+  "info": {
+    "displayName": "MeComponent",
+    "icon": "hand-paper"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "title": {
+      "type": "richtext",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

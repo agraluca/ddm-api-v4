@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_news_component_news_components",
+  "info": {
+    "displayName": "NewsComponent",
+    "icon": "journal-whills"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "News": {
+      "displayName": "News",
+      "type": "component",
+      "repeatable": true,
+      "component": "news.news"
+    }
+  }
+}

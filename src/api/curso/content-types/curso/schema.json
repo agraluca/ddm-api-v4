@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cursos",
+  "info": {
+    "singularName": "curso",
+    "pluralName": "cursos",
+    "displayName": "Cursos",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "module": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::modulo.modulo",
+      "mappedBy": "course"
+    },
+    "lessons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::aula.aula",
+      "mappedBy": "course"
+    },
+    "coursePermission": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::course-permission.course-permission"
+    }
+  }
+}

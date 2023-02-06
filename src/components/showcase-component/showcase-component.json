@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_showcase_component_showcase_components",
+  "info": {
+    "displayName": "ShowcaseComponent",
+    "icon": "shower"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "Showcase": {
+      "displayName": "Showcase",
+      "type": "component",
+      "repeatable": true,
+      "component": "showcase.showcase"
+    }
+  }
+}

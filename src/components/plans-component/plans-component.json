@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_plans_component_plans_components",
+  "info": {
+    "displayName": "PlansComponent",
+    "icon": "archway"
+  },
+  "options": {},
+  "attributes": {
+    "plans": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::plan.plan"
+    }
+  }
+}

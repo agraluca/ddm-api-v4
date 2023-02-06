@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_showcase_showcases",
+  "info": {
+    "displayName": "Showcase",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

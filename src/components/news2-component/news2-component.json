@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_news2_component_news2_components",
+  "info": {
+    "displayName": "News2Component",
+    "icon": "newspaper"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "News": {
+      "type": "component",
+      "repeatable": true,
+      "component": "card.card"
+    }
+  }
+}

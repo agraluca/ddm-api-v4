@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_testimony_component_testimony_components",
+  "info": {
+    "displayName": "TestimonyComponent",
+    "icon": "american-sign-language-interpreting"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "card": {
+      "displayName": "card",
+      "type": "component",
+      "repeatable": true,
+      "component": "card.card"
+    }
+  }
+}

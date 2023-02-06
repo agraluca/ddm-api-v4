@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_classes_component_classes_components",
+  "info": {
+    "displayName": "ClassesComponent",
+    "icon": "server",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "list": {
+      "displayName": "list",
+      "type": "component",
+      "repeatable": true,
+      "component": "list.list"
+    }
+  }
+}

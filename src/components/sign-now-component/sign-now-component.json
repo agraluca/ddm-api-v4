@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sign_now_component_sign_now_components",
+  "info": {
+    "displayName": "SignNowComponent",
+    "icon": "anchor"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "button.button"
+    }
+  }
+}

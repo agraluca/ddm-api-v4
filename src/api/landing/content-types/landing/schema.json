@@ -1,0 +1,83 @@
+{
+  "kind": "singleType",
+  "collectionName": "landings",
+  "info": {
+    "singularName": "landing",
+    "pluralName": "landings",
+    "displayName": "Landing",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "HeroComponent": {
+      "displayName": "HeroComponent",
+      "type": "component",
+      "repeatable": false,
+      "component": "hero-component.hero-component",
+      "required": true
+    },
+    "NewsComponent": {
+      "type": "component",
+      "repeatable": false,
+      "component": "news-component.news-component",
+      "required": true
+    },
+    "ShowcaseComponent": {
+      "displayName": "ShowcaseComponent",
+      "type": "component",
+      "repeatable": false,
+      "component": "showcase-component.showcase-component"
+    },
+    "MeComponent": {
+      "displayName": "MeComponent",
+      "type": "component",
+      "repeatable": false,
+      "component": "me-component.me-component"
+    },
+    "ClassesComponent": {
+      "displayName": "ClassesComponent",
+      "type": "component",
+      "repeatable": true,
+      "component": "classes-component.classes-component"
+    },
+    "SignNowComponent": {
+      "displayName": "SignNowComponent",
+      "type": "component",
+      "repeatable": false,
+      "component": "sign-now-component.sign-now-component"
+    },
+    "TestimonyComponent": {
+      "displayName": "TestimonyComponent",
+      "type": "component",
+      "repeatable": false,
+      "component": "testimony-component.testimony-component"
+    },
+    "PlansComponent": {
+      "displayName": "PlansComponent",
+      "type": "component",
+      "repeatable": false,
+      "component": "plans-component.plans-component"
+    },
+    "FaqComponent": {
+      "displayName": "FaqComponent",
+      "type": "component",
+      "repeatable": false,
+      "component": "faq-component.faq-component"
+    },
+    "News2Component": {
+      "displayName": "News2Component",
+      "type": "component",
+      "repeatable": false,
+      "component": "news2-component.news2-component"
+    },
+    "LastContentComponent": {
+      "displayName": "LastContentComponent",
+      "type": "component",
+      "repeatable": false,
+      "component": "last-content-component.last-content-component"
+    }
+  }
+}

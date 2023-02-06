@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "couse_permissions",
+  "info": {
+    "singularName": "course-permission",
+    "pluralName": "couse-permissions",
+    "displayName": "Permissão de curso"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_last_content",
+  "info": {
+    "displayName": "LastContentComponent",
+    "icon": "exclamation"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "richtext",
+      "required": true
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.cards"
+    }
+  }
+}
