@@ -28,7 +28,7 @@
     "uuid": "75f1cb87-3d6d-4586-95b6-a6de0caca9ad"
   },
   "engines": {
-    "node": ">=14.19.1 <=18.x.x",
+    "node": ">=14.19.1 <=16.x.x",
     "npm": ">=6.0.0"
   },
   "workspaces": [
