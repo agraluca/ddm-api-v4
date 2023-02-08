@@ -49,6 +49,10 @@
       "relation": "manyToOne",
       "target": "api::modulo.modulo",
       "inversedBy": "lessons"
+    },
+    "order": {
+      "type": "integer",
+      "min": 0
     }
   }
 }
