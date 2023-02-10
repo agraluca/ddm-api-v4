@@ -7,7 +7,7 @@
 const hottokKey = process.env.HOTTOKKEY;
 
 const isHottokValid = (hottok) => {
-  if (process.env.NODE_ENV === "dev") return true;
+  if (process.env.NODE_ENV === "development") return true;
   return hottok === hottokKey;
 };
 
@@ -201,7 +201,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           await this.removeAccessFromUser(userId);
           ctx.response.send(200);
         },
-        PRINTED_BILLET: async ({ userId }) => {
+        BILLET_PRINTED: async ({ userId }) => {
           await this.removeAccessFromUser(userId);
           ctx.response.send(200);
         },
