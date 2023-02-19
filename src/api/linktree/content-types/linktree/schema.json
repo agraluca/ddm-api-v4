@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "linktrees",
+  "info": {
+    "singularName": "linktree",
+    "pluralName": "linktrees",
+    "displayName": "Linktree",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "button": {
+      "type": "component",
+      "repeatable": true,
+      "component": "button.button"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
