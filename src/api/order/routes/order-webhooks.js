@@ -32,5 +32,21 @@ module.exports = {
         auth: false,
       },
     },
+    {
+      method: "POST",
+      path: "/orders/etf-webhook-approved-purchase",
+      handler: "order.etfWebhookApprovedPurchase",
+      config: {
+        auth: false,
+      },
+    },
+    {
+      method: "POST",
+      path: "/orders/etf-webhook-canceled-purchase",
+      handler: "order.etfWebhookCanceledPurchase",
+      config: {
+        auth: false,
+      },
+    },
   ],
 };

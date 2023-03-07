@@ -84,8 +84,6 @@ module.exports = (plugin) => {
       if (!validPassword) {
         throw new ValidationError("Invalid identifier or password");
       } else {
-        console.log("Sanitized", await sanitizeUser(user, ctx));
-
         ctx.send({
           jwt: getService("jwt").issue({
             id: user.id,

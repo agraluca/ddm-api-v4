@@ -21,10 +21,11 @@ const addMonths = (numOfMonths) => {
 };
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
+  etfCoursePermissionId: 1,
   async findUserByEmail(userEmail) {
     const userInfo = await strapi.db
       .query("plugin::users-permissions.user")
-      .findOne({ where: { email: userEmail } });
+      .findOne({ where: { email: userEmail }, populate: ["coursePermission"] });
     return userInfo;
   },
 
@@ -39,6 +40,25 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     await strapi.db.query("plugin::users-permissions.user").update({
       where: { id: userId },
       data: { isPaid: false },
+    });
+  },
+
+  async grantAccessOnEtfCourseToUser({ userId, coursesPermission }) {
+    await strapi.db.query("plugin::users-permissions.user").update({
+      where: { id: userId },
+      data: {
+        coursePermission: [...coursesPermission, this.etfCoursePermissionId],
+      },
+    });
+  },
+
+  async removeAccessOnEtfCourseFromUser({ userId, coursesPermission }) {
+    const updatedCoursePermission = coursesPermission.filter(
+      (course) => course !== this.etfCoursePermissionId
+    );
+    await strapi.db.query("plugin::users-permissions.user").update({
+      where: { id: userId },
+      data: { coursePermission: updatedCoursePermission },
     });
   },
 
@@ -156,7 +176,6 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     const userEmail = body.data.subscriber.email.toLowerCase();
     try {
       const userInfo = await this.findUserByEmail(userEmail);
-      console.log({ userInfo });
       const userId = userInfo.id;
 
       if (!userInfo) {
@@ -221,6 +240,128 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       return (
         expiredStatus[status]({ userId }) ||
         expiredStatus["DEFAULT"]({ userId })
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
+  async etfWebhookApprovedPurchase(ctx) {
+    const hottok = ctx.request.header["x-hotmart-hottok"];
+
+    if (!isHottokValid(hottok)) {
+      return ctx.throw(401);
+    }
+
+    const body = ctx.request.body;
+
+    const status = body.data.purchase.status;
+
+    const userEmail = body.data.buyer.email.toLowerCase();
+
+    try {
+      const userInfo = await this.findUserByEmail(userEmail);
+
+      if (!userInfo) {
+        return ctx.throw(404);
+      }
+
+      const approvedStatus = {
+        APPROVED: async ({ userId, coursesPermission }) => {
+          await this.grantAccessOnEtfCourseToUser({
+            userId,
+            coursesPermission,
+          });
+          ctx.response.send(200);
+        },
+        COMPLETED: async ({ userId, coursesPermission }) => {
+          await this.grantAccessOnEtfCourseToUser({
+            userId,
+            coursesPermission,
+          });
+          ctx.response.send(200);
+        },
+        DEFAULT: async ({ userId, coursesPermission }) => {
+          await this.removeAccessOnEtfCourseFromUser({
+            userId,
+            coursesPermission,
+          });
+          ctx.response.send(200);
+        },
+      };
+
+      const userId = userInfo.id;
+      const coursesPermission = userInfo.coursePermission.map(
+        (course) => course.id
+      );
+
+      return (
+        approvedStatus[status]({ userId, coursesPermission }) ||
+        approvedStatus["DEFAULT"]({ userId, coursesPermission })
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
+  async etfWebhookCanceledPurchase(ctx) {
+    const hottok = ctx.request.header["x-hotmart-hottok"];
+
+    if (!isHottokValid(hottok)) {
+      return ctx.throw(401);
+    }
+
+    const body = ctx.request.body;
+    const status = body.data.purchase.status;
+
+    const userEmail = body.data.buyer.email.toLowerCase();
+
+    try {
+      const userInfo = await this.findUserByEmail(userEmail);
+
+      if (!userInfo) {
+        return ctx.throw(404);
+      }
+
+      const approvedStatus = {
+        CANCELED: async ({ userId, coursesPermission }) => {
+          await this.removeAccessOnEtfCourseFromUser({
+            userId,
+            coursesPermission,
+          });
+          ctx.response.send(200);
+        },
+        EXPIRED: async ({ userId, coursesPermission }) => {
+          await this.removeAccessOnEtfCourseFromUser({
+            userId,
+            coursesPermission,
+          });
+          ctx.response.send(200);
+        },
+        REFUNDED: async ({ userId, coursesPermission }) => {
+          await this.removeAccessOnEtfCourseFromUser({
+            userId,
+            coursesPermission,
+          });
+          ctx.response.send(200);
+        },
+        DEFAULT: async ({ userId, coursesPermission }) => {
+          await this.removeAccessOnEtfCourseFromUser({
+            userId,
+            coursesPermission,
+          });
+          ctx.response.send(200);
+        },
+      };
+
+      const userId = userInfo.id;
+      const coursesPermission = userInfo.coursePermission.map(
+        (course) => course.id
+      );
+
+      return (
+        approvedStatus[status]({ userId, coursesPermission }) ||
+        approvedStatus["DEFAULT"]({ userId, coursesPermission })
       );
     } catch (err) {
       console.error(err);
